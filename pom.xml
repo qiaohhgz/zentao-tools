@@ -17,6 +17,12 @@
         <jdk.version>1.6</jdk.version>
     </properties>
 
+    <scm>
+        <connection>scm:git:https://github.com/qiaohhgz/zentao-tools.git</connection>
+        <developerConnection>scm:git:git@github.com:qiaohhgz/zentao-tools.git</developerConnection>
+        <url>https://github.com/qiaohhgz/zentao-tools</url>
+    </scm>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
