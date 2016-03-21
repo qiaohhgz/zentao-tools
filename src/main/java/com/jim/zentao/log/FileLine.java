@@ -1,7 +1,6 @@
 package com.jim.zentao.log;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,9 +14,26 @@ import java.util.List;
 public class FileLine {
     private List<String> lines = new ArrayList<String>();
     private int count = 1;
+    private int firstLineNumber = -1;
+    private String logFileName;
 
+    public FileLine() {
+    }
+
+    public FileLine(int firstLineNumber) {
+        this.firstLineNumber = firstLineNumber;
+    }
+
+    @Deprecated
     public FileLine(List<String> lines) {
         this.lines = new ArrayList<String>(lines);
+    }
+
+    public FileLine(LimitQueue<String> limitQueue, List<String> lines) {
+        for (int i = 0; i < limitQueue.size() - 1; i++) {
+            getLines().add(limitQueue.poll());
+        }
+        getLines().addAll(lines);
     }
 
     public FileLine addLine() {
@@ -41,4 +57,26 @@ public class FileLine {
         return count;
     }
 
+    public FileLine setLines(List<String> lines) {
+        this.lines = new ArrayList<String>(lines);
+        return this;
+    }
+
+    public FileLine setFirstLineNumber(int firstLineNumber) {
+        this.firstLineNumber = firstLineNumber;
+        return this;
+    }
+
+    public int getFirstLineNumber() {
+        return firstLineNumber;
+    }
+
+    public String getLogFileName() {
+        return logFileName;
+    }
+
+    public FileLine setLogFileName(String logFileName) {
+        this.logFileName = logFileName;
+        return this;
+    }
 }
